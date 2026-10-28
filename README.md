@@ -45,6 +45,24 @@ python studio.py draft demo.srt output/draft.md
 sh examples/run_demo.sh
 ```
 
+## 로컬 웹 UI (127.0.0.1 전용, Python 표준 라이브러리만)
+
+```bash
+python3 web.py --port 8768
+# 브라우저에서 http://127.0.0.1:8768 접속
+```
+
+- 기능: doctor 상태 표시, SRT 텍스트로 오프라인 draft 미리보기/파일 생성,
+  로컬 파일 경로 기준 trim 실행.
+- 경로는 브라우저 PC가 아니라 서버가 실행 중인 PC의 파일 경로다.
+- 기존 출력 덮어쓰기 금지, shell 없이 인자 배열로 실행한다는 CLI 규칙을
+  웹에서도 그대로 유지한다.
+- Whisper·Ollama 실제 동작은 웹 UI에서도 새로 검증하지 않는다.
+  draft 기본값은 오프라인 템플릿이다.
+- **이 웹 UI는 GitHub Pages용이 아니다.** Pages는 정적 사이트라 Python
+  서버가 돌아가지 않는다. 로컬에서만 쓰는 UI다.
+- 웹 UI 추가분은 로컬 작업본에만 있으며, GitHub에는 푸시하지 않았다.
+
 가상환경을 쓰려면:
 
 ```bash
@@ -124,12 +142,16 @@ python -m unittest -v
 - 테스트는 `test_studio.py`에 있습니다. 기존 테스트 2개를 유지하고,
   자막 필터링·Ollama 모의 요청·Whisper 모의 전사·trim 명령 구성·
   CLI 진입점(`doctor`/`draft`) 테스트를 추가했습니다.
+- 웹 UI 테스트는 `test_web.py`에 있습니다. 임시 포트(127.0.0.1)로 실제
+  서버를 띄워 doctor·draft 미리보기/생성·덮어쓰기 거부·FFmpeg trim을
+  확인하고, 테스트 후 서버를 종료합니다.
 
 ## 검증 현황 (솔직한 범위)
 
 | 항목 | 상태 |
 |---|---|
 | 단위 테스트 12개 | 통과 (2026-10-28 작업본, Python 3.12, `python -m unittest -v`) |
+| 웹 UI 포함 전체 테스트 16개 | 통과 (2026-10-28 작업본, 기존 12개 + 웹 4개) |
 | 실제 FFmpeg 합성 영상 자르기 | 통과 — 0.5~2.5초 구간: stream-copy 2.23초, 재인코딩 2.00초 (2026-10-28 작업본 스모크 확인) |
 | SRT → 템플릿 Markdown | 통과 |
 | 실제 Whisper 음성 인식 | **미검증** — 사용자 PC에서 실제 음성 파일로 별도 확인 필요 |
@@ -153,7 +175,9 @@ python -m unittest -v
 | 파일 | 설명 |
 |---|---|
 | `studio.py` | CLI 본체 (`doctor` / `trim` / `transcribe` / `draft`) |
+| `web.py` | 로컬 웹 UI (127.0.0.1 전용, 표준 라이브러리만) |
 | `test_studio.py` | 단위 테스트 (모의 Whisper·Ollama 포함) |
+| `test_web.py` | 웹 UI 테스트 (임시 포트, 테스트 후 서버 종료) |
 | `demo.srt` | 데모용 자막 (템플릿 초안 확인용) |
 | `examples/run_demo.sh` | doctor + 데모 초안 실행 예시 |
 | `start.bat` | Windows용 doctor 확인 실행기 |

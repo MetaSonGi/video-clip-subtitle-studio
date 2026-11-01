@@ -4,6 +4,7 @@ Whisper·Ollama 실제 실행은 검증하지 않는다. trim 테스트는 로�
 FFmpeg 합성 영상만 쓴다."""
 
 import json
+import shutil
 import subprocess
 import tempfile
 import threading
@@ -69,6 +70,8 @@ class WebTests(unittest.TestCase):
         self.assertEqual(status, 400)
         self.assertIn("덮어쓰지", body["error"])
 
+    @unittest.skipUnless(shutil.which("ffmpeg") and shutil.which("ffprobe"),
+                         "FFmpeg/ffprobe가 설치되지 않아 실제 자르기 테스트를 건너뜀")
     def test_trim_with_local_ffmpeg(self):
         src = Path(self.tmp.name) / "in.mp4"
         subprocess.run(["ffmpeg", "-y", "-f", "lavfi", "-i", "testsrc=duration=5:size=128x72:rate=10",

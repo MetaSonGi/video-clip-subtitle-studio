@@ -61,7 +61,7 @@ python3 web.py --port 8768
   draft 기본값은 오프라인 템플릿이다.
 - **이 웹 UI는 GitHub Pages용이 아니다.** Pages는 정적 사이트라 Python
   서버가 돌아가지 않는다. 로컬에서만 쓰는 UI다.
-- 웹 UI 추가분은 로컬 작업본에만 있으며, GitHub에는 푸시하지 않았다.
+- 웹 UI도 GitHub 저장소에 포함되어 있다.
 
 가상환경을 쓰려면:
 

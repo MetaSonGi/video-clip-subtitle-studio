@@ -1,12 +1,19 @@
 # 효기 로컬 콘텐츠 스튜디오
 
-> **관련 저장소 구분** — 이 저장소는 **정식판**입니다: 환경 점검(doctor), 로컬 웹 UI, AI 없이 쓰는 오프라인 초안 템플릿, 안전 규칙(덮어쓰기 금지·shell 미사용)을 포함합니다.
-> 자르기→자막→Ollama 초안을 명령 하나로 끝내는 **원스텝 CLI판**은 [hyoki-content-studio](https://github.com/MetaSonGi/hyoki-content-studio)입니다.
-
-
 개발 시연 녹화에서 필요한 구간을 자르고, 음성을 자막으로 바꾸고,
 30초 콘텐츠 초안을 만드는 Python CLI입니다.
 기본 동작은 외부 결제·가입·API 키 없이 로컬에서 실행됩니다.
+
+## 함께 들어 있는 프로젝트
+
+비슷한 기능의 저장소를 이 저장소 하나로 합쳤습니다. 폴더마다 따로 실행되며, 실행 방법은 각 폴더의 README에 있습니다.
+
+| 폴더 | 원래 저장소 | 내용 |
+|---|---|---|
+| `/` (루트) | video-clip-subtitle-studio | 정식판: 환경 점검(doctor), 로컬 웹 UI, 오프라인 초안 템플릿 |
+| [`hyoki-content-studio/`](hyoki-content-studio/) | [hyoki-content-studio](https://github.com/MetaSonGi/hyoki-content-studio) | 원스텝 CLI판: `pipeline` 명령 하나로 자르기 → Whisper 자막 → Ollama 초안 |
+
+원래 저장소는 보관(archive) 처리되어 읽기 전용입니다. 합치기 전 커밋 기록도 그대로 남아 있습니다 (`git log -- <폴더>`).
 
 ## 하는 일 / 하지 않는 일
 

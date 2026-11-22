@@ -1,7 +1,6 @@
 # 콘텐츠 스튜디오 (hyoki-content-studio)
 
-> **관련 저장소 구분** — 이 저장소는 **원스텝 CLI판**입니다: `pipeline` 명령 하나로 자르기→Whisper 자막→Ollama 초안(요약·설명·대본)을 끝냅니다.
-> 웹 UI, 환경 점검, AI 없는 오프라인 초안이 필요하면 **정식판** [video-clip-subtitle-studio](https://github.com/MetaSonGi/video-clip-subtitle-studio)를 쓰세요.
+> 📦 이 폴더는 [video-clip-subtitle-studio](https://github.com/MetaSonGi/video-clip-subtitle-studio) 저장소로 통합되었습니다 (원래 저장소: hyoki-content-studio, 보관됨).
 
 
 시연 영상을 **자르고 → Whisper로 자막을 만들고 → Ollama로 요약·설명·대본 초안**을 쓰는 명령줄 도구예요. 모두 내 PC에서 실행돼요.

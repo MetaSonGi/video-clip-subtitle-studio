@@ -165,18 +165,18 @@ class CliTests(unittest.TestCase):
         studio_py = Path(__file__).resolve().parent / 'studio.py'
         with tempfile.TemporaryDirectory() as d:
             proc = subprocess.run([sys.executable, str(studio_py), 'doctor'],
-                                  capture_output=True, text=True, cwd=d)
+                                  capture_output=True, text=True, encoding='utf-8', cwd=d)
             self.assertEqual(proc.returncode, 0)
             self.assertIn('python', json.loads(proc.stdout))
             srt = Path(d) / 'demo.srt'
             srt.write_text('1\n00:00:00,000 --> 00:00:03,000\n데모 문장\n', encoding='utf-8')
             proc = subprocess.run([sys.executable, str(studio_py), 'draft',
                                    str(srt), str(Path(d) / 'draft.md')],
-                                  capture_output=True, text=True, cwd=d)
+                                  capture_output=True, text=True, encoding='utf-8', cwd=d)
             self.assertEqual(proc.returncode, 0, proc.stderr)
             self.assertIn('AI 생성 아님', (Path(d) / 'draft.md').read_text(encoding='utf-8'))
             proc = subprocess.run([sys.executable, str(studio_py)],
-                                  capture_output=True, text=True, cwd=d)
+                                  capture_output=True, text=True, encoding='utf-8', cwd=d)
             self.assertNotEqual(proc.returncode, 0)
 
 

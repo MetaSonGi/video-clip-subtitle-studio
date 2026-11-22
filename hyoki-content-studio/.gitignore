@@ -1,0 +1,5 @@
+output/
+__pycache__/
+*.mp4
+*.srt
+.pytest_cache/
